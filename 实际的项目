@@ -1,0 +1,24 @@
+from sklearn.feature_extraction import DictVectorizer
+import pandas as pd 
+dict_vec = DictVectorizer(sparse=False)  # #sparse=False意思是不产生稀疏矩阵
+xx=pd.read_csv(r'/Users/lfz001/Desktop/123.csv',encoding='gb2312', sep=',', header=0)
+
+
+X_train = dict_vec.fit_transform(xx.to_dict(orient='record'))
+#X_train
+#dict_vec.feature_names_   #查看转换后的列名
+#X_train
+
+
+from sklearn.preprocessing import LabelEncoder
+xxx=LabelEncoder()
+
+xx['sex']=y
+#xxx.classes_
+
+
+pd.concat([xx,pd.Series(y)],axis=1)
+
+
+from sklearn.preprocessing import OneHotEncoder  #哑编码，对IRIS数据集的目标值，返回值为哑编码后的数据 
+x2=OneHotEncoder().fit_transform(y.reshape((-1,1))) 
